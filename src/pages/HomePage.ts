@@ -1,12 +1,16 @@
 import type { Page , Locator } from '@playwright/test';
 export class HomePage {
-    readonly page: Page;
-    readonly signInLink : Locator;
+    private readonly page: Page;
+    private readonly signInLink : Locator;
 
   constructor(page: Page) {
     this.page = page;
     this.signInLink = this.page.getByRole("link", { name: "Sign in" , exact: true });
   }    
+
+  public getSignInLink(): Locator {
+    return this.signInLink;
+  }
 
   async goto() {
     await this.page.goto("/");

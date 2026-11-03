@@ -16,6 +16,7 @@ export const test = base.extend<AppFixtures>({
     await use(homePage);
   },
 
+  
   loginPage: async ({ page }, use) => {
     const loginPage = new LoginPage(page);        
     await use(loginPage);

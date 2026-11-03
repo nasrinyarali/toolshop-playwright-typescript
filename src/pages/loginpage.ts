@@ -1,13 +1,13 @@
 import type { Page , Locator } from '@playwright/test';
 export class LoginPage {
-    readonly page: Page;
-    readonly emailLoc : Locator;
-    readonly passwordLoc : Locator;
-    readonly loginButton : Locator;
-    readonly emailRequiredMessage : Locator;
-    readonly passwordRequiredMessage : Locator;
-    readonly loginErrorMessage : Locator;
-    readonly registerLink : Locator;
+    private readonly page: Page;
+    private readonly emailLoc : Locator;
+    private readonly passwordLoc : Locator;
+    private readonly loginButton : Locator;
+    private readonly emailRequiredMessage : Locator;
+    private readonly passwordRequiredMessage : Locator;
+    private readonly loginErrorMessage : Locator;
+    private readonly registerLink : Locator;
     
 
 
@@ -21,6 +21,35 @@ export class LoginPage {
     this.loginErrorMessage = this.page.locator('div[data-test= "login-error"]');
     this.registerLink = this.page.getByRole("link", { name: "Register your account" , exact: true });
   }    
+
+getEmailLoc(): Locator {
+  return this.emailLoc;
+}
+
+getPasswordLoc(): Locator {
+  return this.passwordLoc;
+}
+
+getLoginButton(): Locator {
+  return this.loginButton;
+}
+
+getEmailRequiredMessage(): Locator {
+  return this.emailRequiredMessage;
+}
+
+getPasswordRequiredMessage(): Locator {
+  return this.passwordRequiredMessage;
+}
+
+getLoginErrorMessage(): Locator {
+  return this.loginErrorMessage;
+}
+
+getRegisterLink(): Locator {
+  return this.registerLink;
+} 
+
 
   async goto() {
     await this.page.goto("/auth/login");

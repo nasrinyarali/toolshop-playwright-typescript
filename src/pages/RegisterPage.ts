@@ -1,19 +1,19 @@
 import type { Page , Locator } from '@playwright/test';
 export class RegisterPage {
-readonly page: Page;
-readonly firstNameLoc : Locator;
-readonly lastNameLoc : Locator;
-readonly dataOfBirthLoc : Locator;
-readonly postalCodeLoc : Locator;
-readonly houseNumberLoc : Locator;
-readonly streetLoc : Locator;
-readonly cityLoc : Locator;
-readonly countryLoc : Locator;
-readonly stateLoc : Locator;
-readonly phoneLoc : Locator;
-readonly emailLoc : Locator;
-readonly passwordLoc : Locator;
-readonly registerButtonLoc : Locator;
+private readonly page: Page;
+private readonly firstNameLoc : Locator;
+private readonly lastNameLoc : Locator;
+private readonly dataOfBirthLoc : Locator;
+private readonly postalCodeLoc : Locator;
+private readonly houseNumberLoc : Locator;
+private readonly streetLoc : Locator;
+private readonly cityLoc : Locator;
+private readonly countryLoc : Locator;
+private readonly stateLoc : Locator;
+private readonly phoneLoc : Locator;
+private readonly emailLoc : Locator;
+private readonly passwordLoc : Locator;
+private readonly registerButtonLoc : Locator;
 
 constructor(page: Page) {
     this.page = page;
@@ -31,6 +31,58 @@ constructor(page: Page) {
    this.passwordLoc = this.page.getByLabel("Password",{exact:true});
     this.registerButtonLoc = this.page.getByRole("button", { name: "Register" , exact: true });
   } 
+
+getFirstNameLoc(): Locator {
+  return this.firstNameLoc;
+}
+
+getLastNameLoc(): Locator {
+  return this.lastNameLoc;
+}
+
+getDataOfBirthLoc(): Locator {
+  return this.dataOfBirthLoc;
+}
+
+getPostalCodeLoc(): Locator {
+  return this.postalCodeLoc;
+}
+
+getHouseNumberLoc(): Locator {
+  return this.houseNumberLoc;
+}
+
+getStreetLoc(): Locator {
+  return this.streetLoc;
+}
+
+getCityLoc(): Locator {
+  return this.cityLoc;
+}
+
+getCountryLoc(): Locator {
+  return this.countryLoc;
+}
+
+getStateLoc(): Locator {
+  return this.stateLoc;
+}
+
+getPhoneLoc(): Locator {
+  return this.phoneLoc;
+}
+
+getEmailLoc(): Locator {
+  return this.emailLoc;
+}
+
+getPasswordLoc(): Locator {
+  return this.passwordLoc;
+}
+
+getRegisterButtonLoc(): Locator {
+  return this.registerButtonLoc;
+}
 
 async goto() {
     await this.page.goto("/auth/register");

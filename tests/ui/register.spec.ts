@@ -8,9 +8,9 @@ test("Registration form Opens", async ({ registerPage, loginPage, page }) => {
     const emailAddress = "nasrin.yarali"+ Date.now().toString() +"@gmail.com";
     const password = "Password"+ Date.now().toString() +"!";
     await registerPage.fillRegisterationform("Nasrin", "Yarali", "1980-09-11", "94598", "3220", countryName , "5555555555", emailAddress, password);  
-    await expect(registerPage.streetLoc).not.toHaveValue('');
-    await expect(registerPage.cityLoc).not.toHaveValue('');
-    await expect(registerPage.stateLoc).not.toHaveValue('');
+    await expect(registerPage.getStreetLoc()).not.toHaveValue('');
+    await expect(registerPage.getCityLoc()).not.toHaveValue('');
+    await expect(registerPage.getStateLoc()).not.toHaveValue('');
     await registerPage.clickRegister();
     await expect(page).toHaveURL(/\/auth\/login/);
     await expect(page.getByRole("heading", { name: "Login" , exact: true })).toBeVisible();

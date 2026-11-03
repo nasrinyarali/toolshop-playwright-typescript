@@ -11,17 +11,17 @@ await loginPage.goto();
 await loginPage.login(testCase.email, testCase.password);
 
 if (testCase.emailError !== null) {
-await expect(loginPage.emailRequiredMessage).toBeVisible();
-await expect(loginPage.emailRequiredMessage).toHaveText(testCase.emailError);
+await expect(loginPage.getEmailRequiredMessage()).toBeVisible();
+await expect(loginPage.getEmailRequiredMessage()).toHaveText(testCase.emailError);
 } else {
-await expect(loginPage.emailRequiredMessage).toBeHidden();
+await expect(loginPage.getEmailRequiredMessage()).toBeHidden();
 }
 
 if (testCase.passwordError !== null) {
-await expect(loginPage.passwordRequiredMessage).toBeVisible();
-await expect(loginPage.passwordRequiredMessage).toHaveText(testCase.passwordError);
+await expect(loginPage.getPasswordRequiredMessage()).toBeVisible();
+await expect(loginPage.getPasswordRequiredMessage()).toHaveText(testCase.passwordError);
 } else {
-await expect(loginPage.passwordRequiredMessage).toBeHidden();
+await expect(loginPage.getPasswordRequiredMessage()).toBeHidden();
 }
 });
 }
@@ -29,13 +29,13 @@ await expect(loginPage.passwordRequiredMessage).toBeHidden();
 test('Invalid credential are rejected', async ({loginPage, page}) => {
 await loginPage.goto();
 await loginPage.login("unregistered-user@example.com", "wrongpassword123!");
-await expect(loginPage.loginErrorMessage).toBeVisible();
+await expect(loginPage.getLoginErrorMessage()).toBeVisible();
 await expect(page).toHaveURL(/\/auth\/login/);  
 });
 
-test("Open Register Link", async ({ loginPage }) => {
+test("Open Register Link", async ({ loginPage, page }) => {
   await loginPage.goto();
   await loginPage.OpenRegisterlink();
-  await expect(loginPage.page).toHaveURL(/\/auth\/register/);
-  await expect(loginPage.page.getByRole("heading", { name: "Customer registration" , exact: true })).toBeVisible();
+  await expect(page).toHaveURL(/\/auth\/register/);
+  await expect(page.getByRole("heading", { name: "Customer registration" , exact: true })).toBeVisible();
 });
