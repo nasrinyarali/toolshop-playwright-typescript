@@ -13,7 +13,7 @@ export class HomePage {
   }
 
   async goto() {
-    await this.page.goto("/");
+    await this.page.goto(process.env.APP_BASE_URL + "/");
   }
 
   async openSignInPage() {
