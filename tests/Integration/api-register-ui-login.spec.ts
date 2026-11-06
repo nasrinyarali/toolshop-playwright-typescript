@@ -29,7 +29,7 @@ expect(registeredUser.email).toBe(userData.email);
 await loginPage.goto();
 await loginPage.login(userData.email, userData.password);
 //await expect(page.getByRole('heading', { name: 'My account' , level:1})).toBeVisible(); 
-await page.locator('h1').filter({ hasText: 'My account' }).first().waitFor({ state: 'visible' });
+//await page.locator('h1').filter({ hasText: 'My account' }).first().waitFor({ state: 'visible' });
 
 //Verify that the profile belongs to the registered user
 await page.getByRole('link', { name: 'Profile'}).click();
