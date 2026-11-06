@@ -52,7 +52,7 @@ getRegisterLink(): Locator {
 
 
   async goto() {
-    await this.page.goto(process.env.APP_BASE_URL + "/auth/login");
+    await this.page.goto('/auth/login');
   }
 
   async clickLogin() {

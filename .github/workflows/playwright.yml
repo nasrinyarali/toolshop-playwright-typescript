@@ -26,3 +26,7 @@ jobs:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
+    env:
+      ENV: dev
+      APP_BASE_URL: https://practicesoftwaretesting.com
+      API_BASE_URL: https://api.practicesoftwaretesting.com  
