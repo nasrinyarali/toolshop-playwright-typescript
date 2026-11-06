@@ -28,6 +28,7 @@ expect(registeredUser.email).toBe(userData.email);
 // 2. Log in with the same email and password using UI
 await loginPage.goto();
 await loginPage.login(userData.email, userData.password);
+page.waitForTimeout(5000); // Wait for 2 seconds to ensure the page has loaded
 //await expect(page.getByRole('heading', { name: 'My account' , level:1})).toBeVisible(); 
 //await page.locator('h1').filter({ hasText: 'My account' }).first().waitFor({ state: 'visible' });
 
