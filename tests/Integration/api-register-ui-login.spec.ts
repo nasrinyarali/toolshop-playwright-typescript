@@ -18,7 +18,9 @@ email: `test-${Date.now()}@gmail.com`,
 const response:APIResponse = await request.post(`${Api_URL}/users/register`, {
   data:userData,
 });
-
+if (response.status() !== 201) {
+  console.log(`Failed to register: ${(await response.text()).slice(0, 1500)}`);
+}
 expect(response.status()).toBe(201);
 const registeredUser = await response.json();
 expect(registeredUser.email).toBe(userData.email);
@@ -28,12 +30,15 @@ expect(registeredUser.email).toBe(userData.email);
 // 2. Log in with the same email and password using UI
 await loginPage.goto();
 await loginPage.login(userData.email, userData.password);
-page.waitForTimeout(5000); // Wait for 2 seconds to ensure the page has loaded
+
 //await expect(page.getByRole('heading', { name: 'My account' , level:1})).toBeVisible(); 
 //await page.locator('h1').filter({ hasText: 'My account' }).first().waitFor({ state: 'visible' });
 
 //Verify that the profile belongs to the registered user
-await page.getByRole('link', { name: 'Profile'}).click();
+//await page.getByRole('link', { name: 'Profile'}).click();
+await expect(page.getByRole('heading', { name: 'My account', level: 1 })).toBeVisible();
+await page.locator('[data-test="nav-profile"]').click();
+
 await expect(page.getByRole('textbox', { name: 'First name'})).toHaveValue(userData.first_name);
 await expect(page.getByRole('textbox', { name: 'Last name'})).toHaveValue(userData.last_name);
 await expect(page.getByRole('textbox', { name: 'Email address'})).toHaveValue(userData.email);
