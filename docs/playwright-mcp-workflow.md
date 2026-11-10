@@ -39,3 +39,22 @@ After generating the test, I ran it and checked the Playwright report for the re
 ## 4. Fix a locator with the Playwright Healer
 
 In one run, the test failed because a locator couldn't find the element on the page. I ran the Playwright Healer agent to investigate, and it identified and corrected the locator.
+
+
+
+## Debugging a Playwright CI Failure with GitHub Copilot
+
+To practice debugging a CI failure, I intentionally changed the Search button locator from `search-submit` to `search-submit-broken` on a separate branch. In GitHub Actions, Playwright timed out after 30 seconds while waiting for that locator.
+
+**Prompt I sent to GitHub Copilot:**
+
+```text
+Use GitHub MCP to read the failed job log for this run: https://github.com/nasrinyarali/toolshop-playwright-typescript/actions/runs/42888717209/job/130083833536
+Tell me which test failed, quote the error from the log, and suggest a fix.
+Don't edit any files yet.
+```
+
+Copilot identified the failing product search test, quoted the timeout from the log, and suggested restoring `search-submit`. I applied the fix, kept the assertions unchanged, and started a new GitHub Actions run. The Playwright tests passed.
+
+- [Failed run](https://github.com/nasrinyarali/toolshop-playwright-typescript/actions/runs/42888717209)
+- [Passing run](https://github.com/nasrinyarali/toolshop-playwright-typescript/actions/runs/42893149936)
