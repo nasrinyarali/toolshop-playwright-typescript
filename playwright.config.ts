@@ -9,7 +9,7 @@ import { defineConfig, devices } from '@playwright/test';
 // import path from 'path';
 // dotenv.config({ path: path.resolve(__dirname, '.env') });
 
-const ENV = process.env.ENV || 'dev';
+const ENV = process.env.ENV || 'local';
 dotenv.config({ path: `src/config/.env.${ENV}` });
 /**
  * See https://playwright.dev/docs/test-configuration.
