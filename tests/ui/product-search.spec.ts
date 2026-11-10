@@ -17,7 +17,7 @@ test.describe('Guest product search', () => {
 
     // 2. In the Search field, enter "Combination Pliers" and activate the Search button.
     await page.locator('[data-test="search-query"]').fill('Combination Pliers');
-    await page.locator('[data-test="search-submit"]').click();
+    await page.locator('[data-test="search-submit-broken2"]').click();
 
     // 3. Inspect the search results.
     const productCard = page.getByRole('link').filter({
