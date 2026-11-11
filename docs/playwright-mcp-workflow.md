@@ -92,7 +92,7 @@ The workflow stayed failed. Copilot only provided analysis;
 it did not change the code.
 
 ### View the result
-[Open the workflow run and analysis](PASTE_RUN_URL_HERE)
+[Open the workflow run and analysis](https://github.com/nasrinyarali/toolshop-playwright-typescript/actions/runs/42920363436)
 
 Open the run and select Summary to see the analysis.
 
