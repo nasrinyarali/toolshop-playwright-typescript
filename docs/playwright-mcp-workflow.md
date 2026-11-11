@@ -58,3 +58,47 @@ Copilot identified the failing product search test, quoted the timeout from the 
 
 - [Failed run](https://github.com/nasrinyarali/toolshop-playwright-typescript/actions/runs/42888717209)
 - [Passing run](https://github.com/nasrinyarali/toolshop-playwright-typescript/actions/runs/42893149936)
+
+## Automatic CI failure analysis with Copilot CLI
+
+### What I built
+I added automatic failure analysis to my GitHub Actions workflow.
+When a Playwright test fails, Copilot CLI analyzes the test log
+and writes a report in the workflow Summary.
+
+### How it works
+1. GitHub Actions installs Copilot CLI.
+2. Playwright runs and saves its output to `playwright.log`.
+3. If the Playwright step fails, the analysis step runs.
+4. Copilot analyzes the log and generates a report with:
+ - The failed test.
+ - Error evidence.
+ - The likely cause.
+ - A suggested fix.
+5. The report appears in the GitHub Actions Summary.
+
+Authentication uses a token stored in the repository secret
+`COPILOT_TOKEN`.
+
+### How I verified it
+I intentionally changed the Search button locator to
+`search-submit-broken2`.
+
+The test failed while waiting for the button.
+Copilot automatically identified the failed test and reported
+that the locator was likely incorrect.
+
+The workflow stayed failed. Copilot only provided analysis;
+it did not change the code.
+
+### View the result
+[Open the workflow run and analysis](PASTE_RUN_URL_HERE)
+
+Open the run and select Summary to see the analysis.
+
+### Short interview explanation
+I added automatic failure analysis to my Playwright CI workflow.
+When a test fails, Copilot CLI reads the log and reports the
+likely cause and a suggested fix in the GitHub Actions Summary.
+I review the suggestion before making changes.
+
